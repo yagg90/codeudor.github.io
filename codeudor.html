@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <header>
+    <div class="container">
+      <img src="./img/logo.png" alt="Logo">
+    </div>
+  </header>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Radicación codeudor</title>
+</head>
+<body>
+  <!-- Formulario -->
+  <form action="#" class="form" id="personalDataForm">
+    <!-- Progress bar -->
+    <div class="progressbar">
+      <div class="progress" id="progress"></div>
+      <div class="progress-step progress-step-active" data-title="Tu información personal"></div>
+      <div class="progress-step" data-title="Documentos"></div>
+    </div>
+
+    <!-- Paso 1: Información personal -->
+    <div class="form-step form-step-active">
+      <div class="form-step__child">
+        <div class="input-wrapper">
+          <label for="numRadadicado">Numero de verificacion</label>
+          <input type="number" name="numRadadicado" id="numRadadicado" placeholder="Ej:251651" >
+          <span class="error-message"></span>
+        </div>
+      </div>
+      <div class="form-step__child">
+        <div class="input-wrapper">
+          <label for="primerNombreCod">Primer nombre</label>
+          <input type="text" name="primerNombreCod" id="primerNombreCod" placeholder="Ej: Jose" >
+          <span class="error-message"></span>
+        </div>
+        <div class="input-wrapper">
+          <label for="segundoNombreCod">Segundo nombre</label>
+          <input type="text" name="segundoNombreCod" id="segundoNombreCod" placeholder="Ej: Antonio" >
+          <span class="error-message"></span>
+        </div>
+        <div class="input-wrapper">
+          <label for="primerApellidoCod">Primer apellido</label>
+          <input type="text" name="primerApellidoCod" id="primerApellidoCod" placeholder="Ej: Gomez" >
+          <span class="error-message"></span>
+        </div>
+        <div class="input-wrapper">
+          <label for="segundoApellidoCod">Segundo apellido</label>
+          <input type="text" name="segundoApellidoCod" id="segundoApellidoCod" placeholder="Ej: Sierra" >
+          <span class="error-message"></span>
+        </div>
+      </div>
+      <div class="form-step__child">
+        <div class="input-wrapper">
+          <label for="documentoCod">Tipo de documento</label>
+          <select name="documentoCod" id="documentoCod" required title="Por favor selecciona una opción.">
+            <option value="" >Selecciona una opción</option>
+            <option value="cedula">Cédula de ciudadanía</option>
+            <option value="cedula_extrangeria">Cédula de extranjería</option>
+          </select>
+          
+        </div>
+        <div class="input-wrapper">
+          <label for="numDocumentoCod">Numero documento</label>
+          <input type="number" name="numDocumentoCod" id="numDocumentoCod" placeholder="Ej: 103459547">
+          <span class="error-message"></span>
+        </div>
+        <div class="input-wrapper">
+          <label for="sexoCod">Sexo</label>
+          <select name="sexoCod" id="sexoCod" required title="Por favor selecciona una opción.">
+            <option value="" >Selecciona una opción</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+        </div>
+        <div class="input-wrapper">
+          <label for="emailCod">Correo</label>
+          <input type="email" name="emailCod" id="emailCod" placeholder="Ejemplo: correo@example.com">
+          <span class="error-message"></span>
+        </div>
+      </div>
+      <div class="form-step__child">
+        <div class="input-wrapper">
+          <label for="celularCod">Celular</label>
+          <input type="number" name="celularCod" id="celularCod" placeholder="Ej: 123456789">
+          <span class="error-message"></span>
+        </div>
+        <div class="input-wrapper">
+          <label for="ocupacionCod">Ocupación</label>
+          <select name="ocupacionCod" id="ocupacionCod" required title="Por favor selecciona una opción.">
+            <option value="">Selecciona una opción</option>
+            <option value="empleado">Empleado</option>
+            <option value="independiente">Independiente</option>
+          </select>
+        </div>
+        
+      </div>
+      
+      <div class="input-wrapper-check">
+        <div class="input-wrapper-check__child">
+          <input type="checkbox" name="acceptPersonalDataUse" id="acceptPersonalDataUse" value="yes">
+          <p>Autorizo el uso de información para consulta en centrales de riesgo y otras fuentes. <a href="#"
+            id="abrirModalDeAcuerdos"> Ver más.</a></p>
+          </div>
+          <div class="input-wrapper-check__child">
+          <input type="checkbox" name="acceptTermsAndConditions" id="acceptTermsAndConditions" value="yes">
+          <p>Al enviar tu información aceptas los <a href="https://centraldearrendamientos.com/politica-de-privacidad/" id="abrirModalDeAcuerdos">términos y condiciones </a>de
+            los datos registrados en este sitio. </p>
+        </div>
+      </div>
+
+      <p class="personal-data-form__error-message" id="personalDataFormErrorMessage">
+      <p>
+        
+      <button type="submit" class="btn btn-next next-btn" id="btnSiguiente" value="siguiente">Siguiente</button>
+    </div>
+  </form>
+
+  <!-- Modal de validación -->
+  <div id="validacionModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <!-- <form action="#" id="modalStep1Form"> -->
+
+      <span class="close">&times;</span>
+      <h2>Verificación de datos</h2>
+
+      <div id="datosPaso1" class="modal__datos-paso-1">
+
+      <div class="modal__datos-paso-1--col">
+        <div class="modal__datos-paso-1--data-container">
+          <label for="primerombre">Primer Nombre</label>
+          <input type="text" id="datosPaso1primernombre" disabled>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="segundonombre">Segundo Nombre</label>
+          <input type="text" id="datosPaso1segundonombre" disabled>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="primerapellido">Primer Apellido</label>
+          <input type="text" id="datosPaso1primerapellido" disabled>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="segundoapellido">Segundo Apellido</label>
+          <input type="text" id="datosPaso1segundoapellido" disabled>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="tipodocumento">Tipo de documento</label>
+          <select name="tipodocumento" id="datosPaso1tipodocumento" disabled>
+            <option value="cedula">Cédula de ciudadanía</option>
+            <option value="cedula_extranjeria">Cédula de extranjería</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal__datos-paso-1--col">
+        <div class="modal__datos-paso-1--data-container">
+          <label for="numdocumento">Numero de documento</label>
+          <input type="text" id="datosPaso1numdocumento" disabled>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="sexo">Sexo</label>
+          <select name="sexo" id="datosPaso1sexo" disabled>
+            <option value="" selected="" disabled="" hidden="">Selecciona una opción</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="correo">Correo</label>
+          <input type="email" name="correo" id="datosPaso1correo" disabled>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="celular">Celular</label>
+          <input type="number" id="datosPaso1celular" disabled>
+        </div>
+        <div class="modal__datos-paso-1--data-container">
+          <label for="ocupacion">Ocupación</label>
+          <select name="ocupacion" id="datosPaso1ocupacion" disabled>
+            <option value="" selected="" disabled="" hidden="">Selecciona una opción</option>
+            <option value="empleado">Empleado</option>
+            <option value="independiente">Independiente</option>
+          </select>
+        </div>
+      </div>
+      </div>
+      <div class="modal-content__buttons">
+        <button id="editBtnStep1" class="btn btn-next">Editar</button>
+        <button type="submit" onclick="showConfirmationModal()" class="btn btn-next next-btn">Continuar</button>
+      </div>
+      <!-- </form> -->
+
+    </div>
+  </div>
+  <script>
+    // Función para mostrar el modal de confirmación
+    function showConfirmationModal() {
+      document.getElementById('validacionModal').style.display = 'none';
+      document.getElementById('myModal').style.display = 'flex';
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+      document.getElementById('validacionModal').style.display = 'none';
+    }
+
+    // Función para proceder al siguiente modal después de confirmar
+    function proceedToValidationModal() {
+      closeModal();
+      document.getElementById('validacionModal').style.display = 'block';
+    }
+  </script>
+
+  <!-- Modal de acuerdos -->
+  <div id="modaldeacuerdos" class="modal-de-acuerdos" style="display: none;">
+    <div class="modal-contenido modal-de-acuerdos-contenido">
+      <span class="cerrar">&times;</span>
+      <h2>Acuerdos</h2>
+      <div class="contenido-largo">
+        <p>
+          Nuestra política de privacidad se establece en cumplimiento de la Constitución Política y las leyes colombianas de protección de datos. Requerimos el consentimiento expreso del titular para el tratamiento de sus datos, excepto en casos específicos establecidos por la ley. Implementamos medidas técnicas, humanas y administrativas para garantizar la seguridad y confidencialidad de la información. Se prohíbe la transferencia de datos a países que no proporcionen niveles adecuados de protección, salvo excepciones legales. Los datos se tratan durante el tiempo necesario y se eliminan cuando ya no son necesarios, salvo obligación legal o contractual.
+        </p>
+        <!-- Agrega más contenido según sea necesario -->
+      </div>
+      <button id="botonAceptar">Aceptar</button>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación -->
+  <div id="myModal" class="modal">
+    <!-- Contenido del modal -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Recibirá un código de 6 dígitos en su correo electrónico para completar el proceso de verificación</p>
+      <!-- Botón para confirmar y pasar al siguiente paso -->
+      <button id="confirmModalBtn">Confirmar</button>
+    </div>
+  </div>
+  <!-- Modal del OTP -->
+  <div id="otpModal" class="modal">
+    <!-- Contenido del modal -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Ingrese el código de 6 dígitos enviado a su correo electrónico</p>
+      <input type="text" id="otpInput" maxlength="6">
+
+      <!-- Botón para enviar el código -->
+      <button id="submitOTPBtn">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Paso 2 del formulario (agregado) -->
+  <div id="paso2" class="form-step" style="display: none;">
+    <!-- Contenido del paso 2 -->
+    <h2>Documentos </h2>
+
+    <div class="form-step__child">
+      <div class="input-wrapper">
+        <label for="text">Documento identidad </label>
+        <input type="file" name="cerlaboral" id="cerlaboral">
+      </div>
+      <div class="input-wrapper">
+        <label for="text">Certificacion laboral </label>
+        <input type="file" name="cerlaboral" id="cerlaboral">
+      </div>
+    </div>
+    <div class="form-step__child">
+      <div class="input-wrapper">
+        <label for="text">Declaracion de renta</label>
+        <input type="file" name="decrenta" id="decrenta">
+      </div>
+      <div class="input-wrapper">
+        <label for="text">Extractos bancarios </label>
+        <input type="file" name="exbancarios" id="exbancarios">
+      </div>
+    </div>
+    <div class="form-step__child">
+      <div class="input-wrapper">
+        <label for="text">Otros</label>
+        <input type="file" name="otros" id="otros">
+      </div>
+    <!-- Botón para abrir el modal Codeudor -->
+    <button class="btn btn-abrir-modal">Siguiente</button>
+  </div>
+  <!-- Modal Codeudor -->
+  <div id="modalCodeudor" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Informacion</h2>
+      <p>Se enviara respuesta por medio de correo </p>
+      <div class="modal-content__buttons">
+
+        <button id="autorizarBtn" class="btn btn-autorizar">Autorizar</button>
+        <button class="btn btn-cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <img src="./img/footer.png" alt="Logo de la empresa">
+  </footer>
+  <script src="3.codeudorUrl.js"></script>
+</body>
+
+<script src="1.datoscodeudor.js" defer></script>
+<script src="2.validacionesCodeudor.js" defer></script>
+<script src="3.codeudorUrl.js" defer></script>
+</html>

@@ -4,7 +4,7 @@ var PKCodeudor = urlParams.get('PKCodeudor');
 
 if (PKCodeudor) {
     // URL del endpoint con el parámetro PKCodeudor
-    var url = 'http://pruebas.centraldearrendamientos.com/WebR17_JTDesarrollo.NetEnvironment/APIRadicacionNG/ObtenerDatosCodeudor?PKCodeudor=' + PKCodeudor;
+    var url = 'https://pruebas.centraldearrendamientos.com/WebR17_JTDesarrollo.NetEnvironment/APIRadicacionNG/ObtenerDatosCodeudor?PKCodeudor=' + PKCodeudor;
 
     // Hacer la solicitud GET
     fetch(url)

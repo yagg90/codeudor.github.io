@@ -1,6 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // URL del endpoint
-    var url = 'http://pruebas.centraldearrendamientos.com/WebR17_JTDesarrollo.NetEnvironment/APIRadicacionNG/ObtenerDatosCodeudor?PKCodeudor=3626';
+// Obtener el parámetro PKCodeudor de la URL
+var urlParams = new URLSearchParams(window.location.search);
+var PKCodeudor = urlParams.get('PKCodeudor');
+
+if (PKCodeudor) {
+    // URL del endpoint con el parámetro PKCodeudor
+    var url = 'http://pruebas.centraldearrendamientos.com/WebR17_JTDesarrollo.NetEnvironment/APIRadicacionNG/ObtenerDatosCodeudor?PKCodeudor=' + PKCodeudor;
 
     // Hacer la solicitud GET
     fetch(url)
@@ -11,27 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json(); // Suponiendo que la respuesta es JSON
         })
         .then(data => {
-            console.log(data); // Mostrar los datos en la consola para depuración
-
-            // Aquí procesas los datos y actualizas el DOM
-            if (data) {
-                // Suponiendo que los datos contienen propiedades `nombre`, `direccion`, `telefono`, etc.
-                if (data.primerApellidoCodeudor) {
-                    document.getElementById('nombre-valor').textContent = data.primerApellidoCodeudor;
-                    document.getElementById('nombre').style.display = 'block';
-                }
-                if (data.TipoPersonaCodeudor) {
-                    document.getElementById('direccion-valor').textContent = data.TipoPersonaCodeudor;
-                    document.getElementById('direccion').style.display = 'block';
-                }
-               
-                // Añade más campos según sea necesario
-            } else {
-                document.getElementById('result-container').textContent = 'No se encontraron datos.';
-            }
+            console.log(data); // Mostrar los datos en la consola
         })
         .catch(error => {
             console.error('Hubo un problema con la solicitud Fetch:', error);
-            document.getElementById('result-container').textContent = 'Error al obtener los datos.';
         });
-});
+} else {
+    console.error('No se encontró el parámetro PKCodeudor en la URL.');
+}
+

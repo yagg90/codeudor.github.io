@@ -1,67 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
-    showForm();
-});
+document.addEventListener('DOMContentLoaded', function() {
+    // URL del endpoint
+    var url = 'http://pruebas.centraldearrendamientos.com/WebR17_JTDesarrollo.NetEnvironment/APIRadicacionNG/ObtenerDatosCodeudor?PKCodeudor=3626';
 
-function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
-
-async function showForm() {
-    const userID = getQueryParam('userID');
-    const userType = getQueryParam('tipo');
-
-    const contentElement = document.getElementById('content');
-    if (!contentElement) {
-        console.error('Element with ID "content" not found.');
-        return;
-    }
-
-    if (userID && userType) {
-        try {
-            const response = await fetch(`http://127.0.0.1:5500/codeudor.html?userID=${userID}&tipo=${userType}`);
+    // Hacer la solicitud GET
+    fetch(url)
+        .then(response => {
             if (!response.ok) {
-                throw new Error('Error al obtener los datos');
+                throw new Error('Network response was not ok ' + response.statusText);
             }
-            const userData = await response.json();
+            return response.json(); // Suponiendo que la respuesta es JSON
+        })
+        .then(data => {
+            console.log(data); // Mostrar los datos en la consola para depuración
 
-            let formHTML = '';
-            const codigoCodeudor = 'someValue'; // Asegúrate de definir esta variable o reemplazarla con el valor adecuado
-
-            if (userID === codigoCodeudor) {
-                console.log(userID);
+            // Aquí procesas los datos y actualizas el DOM
+            if (data) {
+                // Suponiendo que los datos contienen propiedades `nombre`, `direccion`, `telefono`, etc.
+                if (data.primerApellidoCodeudor) {
+                    document.getElementById('nombre-valor').textContent = data.primerApellidoCodeudor;
+                    document.getElementById('nombre').style.display = 'block';
+                }
+                if (data.TipoPersonaCodeudor) {
+                    document.getElementById('direccion-valor').textContent = data.TipoPersonaCodeudor;
+                    document.getElementById('direccion').style.display = 'block';
+                }
+               
+                // Añade más campos según sea necesario
             } else {
-                console.log('error');
+                document.getElementById('result-container').textContent = 'No se encontraron datos.';
             }
-
-            if (userType === 'juridico') {
-                formHTML = `
-                    <form>
-                        <label for="companyName">Nombre de la empresa:</label>
-                        <input type="text" id="companyName" name="companyName" value="${userData.companyName}" required>
-                        <label for="ruc">RUC:</label>
-                        <input type="text" id="ruc" name="ruc" value="${userData.ruc}" required>
-                        <button type="submit">Enviar</button>
-                    </form>`;
-            } else if (userType === 'natural') {
-                formHTML = `
-                    <form>
-                        <label for="name">Nombre:</label>
-                        <input type="text" id="name" name="name" value="${userData.name}" required>
-                        <label for="email">Correo electrónico:</label>
-                        <input type="email" id="email" name="email" value="${userData.email}" required>
-                        <button type="submit">Enviar</button>
-                    </form>`;
-            } else {
-                formHTML = 'Tipo de usuario no reconocido.';
-            }
-
-            contentElement.innerHTML = formHTML;
-        } catch (error) {
-            console.error('Error:', error);
-            contentElement.textContent = 'Error al cargar los datos.';
-        }
-    } else {
-        contentElement.textContent = 'No se ha proporcionado un ID de usuario o tipo válido.';
-    }
-}
+        })
+        .catch(error => {
+            console.error('Hubo un problema con la solicitud Fetch:', error);
+            document.getElementById('result-container').textContent = 'Error al obtener los datos.';
+        });
+});

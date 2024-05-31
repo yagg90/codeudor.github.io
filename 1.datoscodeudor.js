@@ -30,25 +30,26 @@ document.addEventListener('DOMContentLoaded', function ()
     var hayCamposVacios = false;
     let errorMessage = ''
     // Iterar sobre los campos y verificar si alguno está vacío
-    for (var i = 0; i < campos.length; i++) {
+    //for (var i = 0; i < campos.length; i++) {
       // Verificar si el campo  y está vacío
-      if (campos.type !== "submit" && campos[i].value.trim() === "") {
-        console.log("empty", campos[i], 'value', campos[i].value);
-        hayCamposVacios = true;
-        errorMessage = 'Por favor completa todos los campos antes de continuar.'
-        break; 
-      } else if (campos.type !== "submit" && campos[i].value === "on") {
-        console.log("empty", campos[i], 'value', campos[i].value);
-        hayCamposVacios = true;
-        errorMessage = 'Por favor autoriza el uso de tu información y términos y condiciones'
-        break
-      }
-    }
+      //if (campos.type !== "submit" && campos[i].value.trim() === "") {
+        //console.log("empty", campos[i], 'value', campos[i].value);
+        //hayCamposVacios = true;
+        //errorMessage = 'Por favor completa todos los campos antes de continuar.'
+        //break; 
+      //} else if (campos.type !== "submit" && campos[i].value === "on") {
+        //console.log("empty", campos[i], 'value', campos[i].value);
+        //hayCamposVacios = true;
+       // errorMessage = 'Por favor autoriza el uso de tu información y términos y condiciones'
+        //break
+      //}
+    //}
     // Si hay algún campo vacío, mostrar un mensaje de error
     if (hayCamposVacios) {
       // alert("Por favor completa todos los campos antes de continuar.");
       errorMessageElement.textContent = errorMessage
-    } else {
+    } else 
+    {
       const validacionModal = document.getElementById('validacionModal')
       // const datosPaso1 = document.getElementById('datosPaso1')
       const data = new FormData(personalDataForm)
@@ -111,18 +112,11 @@ document.addEventListener('DOMContentLoaded', function ()
   })
 
 })
-//console.group('in 3.validacionOTP.js')
-//console.log({ formStepsNum, updateFormSteps, updateProgressbar })
-//console.groupEnd('in 3.validacionOTP.js')
 
-document.getElementById('submitOTPBtn').addEventListener('click', function () {
+document.getElementById('confirmModalBtn').addEventListener('click', function () {
 
-  var codigoOTP = '123456' // Código de ejemplo
-
-  // Verificación de que el código ingresado sea válido
-  if (codigoOTP === '123456') {
-    // Código válido, ocultar modal OTP
-    document.getElementById('otpModal').style.display = 'none'
+  // Mostrar paso 2 del formulario
+    document.getElementById('personalDataForm').style.display = 'none'
 
     // Mostrar paso 2 del formulario
     document.getElementById('paso2').style.display = 'block'
@@ -133,9 +127,6 @@ document.getElementById('submitOTPBtn').addEventListener('click', function () {
     formStepsNum++
     updateFormSteps()
     updateProgressBar()
-  } else {
-    // Código inválido, mostrar mensaje de error
-    alert('Código OTP incorrecto. Por favor, inténtelo de nuevo.')
-  }
+  
 })
   
